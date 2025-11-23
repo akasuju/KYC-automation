@@ -1,10 +1,12 @@
 import { test, expect } from "playwright/test";
-import { Login } from "../pages/loginpage";
+import { UserLogin } from "../pages/loginpage";
 //  Using loginpage POM
 
-test('Login', async ({page}) => { 
-    
- })
+test("Login", async ({ page }) => {
+  const Login = new UserLogin(page);
+  await Login.Login("automation@yopmail.com", "Test@123");
+await page.waitForURL(/.*keycloak.*/);
+});
 
 //test("login", async ({ page }) => {
 //   await page.goto(
@@ -19,5 +21,3 @@ test('Login', async ({page}) => {
 //     "https://dev-naasa-client-management.waterflowtechnology.net/"
 //   );
 //});
-
-
