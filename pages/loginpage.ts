@@ -22,6 +22,11 @@ export class UserLogin {
     await signInButton.waitFor({ state: "visible" });
     await signInButton.click();
 
-   await this.page.waitForURL(/.*keycloak.*/);
+    await this.page.waitForURL(/.*keycloak.*/);
+  }
+  async Register() {
+    const RegisterButton = this.page.getByRole("link", { name: "Register" });
+    await RegisterButton.waitFor({ state: "visible" });
+    await RegisterButton.click();
   }
 }
