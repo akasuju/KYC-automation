@@ -14,35 +14,86 @@ test.skip("Login", async ({ page }) => {
   //expect(page).toHaveURL("")
 });
 
+test("Invalid Login", async ({ page }) => {
+  //invalid credentials
+  const Login = new UserLogin(page);
+  await Login.Login("automation@yopmail.com", "wrongpassword");
+  await expect(page.getByText("Invalid username or password.")).toBeVisible();
+});
+test("Empty Password Login", async ({ page }) => {
+  //Empty fields
+  const Login = new UserLogin(page);
+  await Login.Login("automation@yopmail.com", "wrongpassword");
+  await expect(page.getByText("Invalid username or password.")).toBeVisible();
+});
+
+test("password view eye button", async ({ page }) => {
+  //password view eye button
+  const Login = new UserLogin(page);
+  await Login.Login_fillonly("automation@yopmail.com", "wrongpassword");
+  await page.getByRole("button", { name: "Show password" }).click();
+  await page.waitForTimeout(2000);
+  await page.getByRole("button", { name: "Hide password" }).click();
+  await page.waitForTimeout(2000);
+  await page.pause;
+});
+
+test("playstore Navigation", async ({ page }) => {
+  //playstore Navigation
+  const Login = new UserLogin(page);
+  await page.locator('img[alt="Get it on Google Play"]').click();
+  expect(page).toHaveURL(
+    "https://play.google.com/store/apps/details?id=com.nepse.nepal"
+  );
+});
+
+test("Appstore Navigation", async ({ page }) => {
+  //password view eye button
+  const Login = new UserLogin(page);
+  await page.locator('img[alt="Download on the App Store"]').click({ timeout: 60000 });
+  expect(page).toHaveURL("https://apps.apple.com/us/app/naasa-x/id6737237945");
+});
+
 // test("Register", async ({ page }) => {
 //   //Register
 //   const Login = new UserLogin(page);
 //   const Register = new UserRegister(page);
 //   await Login.Register;
-//   await Register.Register(
-//     "Test",
-//     "",
-//     "Automate",
-//     "testautomate@yopmail.com",
-//     "Test@123",
-//     "Test@123"
-//   );
+// await Register.Register(
+//   "Test",
+//   "",
+//   "Automate",
+//   "testautomate@yopmail.com",
+//   "Test@123",
+//   "Test@123"
+// );
 // });
 
 test("General Details Trading only", async ({ page }) => {
   const Login = new UserLogin(page);
-  const navbutton = new NavButton(page);
+  //const navbutton = new NavButton(page);
   await Login.Login("automate@yopmail.com", "Test@123");
   const generaldetails = new Generalinfo(page);
   await generaldetails.Tradingonly_Details(
     "Sujan Khatri",
     "9852102123",
     "9852123025",
-    "Janakpur",
+    "Pokhara",
     "1305245785210225"
   );
 
-  await navbutton.Next();
+  await page.getByRole("button", { name: "Next" }).click();
+  await page.pause();
+});
+
+test("Empty General Details", async ({ page }) => {
+  const Login = new UserLogin(page);
+  //Empty General Details fields
+  await Login.Login("automate@yopmail.com", "Test@123");
+  const generaldetails = new Generalinfo(page);
+  await generaldetails.Tradingonly_Details("", "", "", "", "");
+  await page.getByRole("button", { name: "Next" }).click();
+  await page.pause();
 });
 
 test.skip("General Details Trading and Demat ", async ({ page }) => {
@@ -50,14 +101,12 @@ test.skip("General Details Trading and Demat ", async ({ page }) => {
   await Login.Login("automate@yopmail.com", "Test@123");
   const generaldetails = new Generalinfo(page);
   const navbutton = new NavButton(page);
-  await generaldetails.Tradingonly_Details(
+  await generaldetails.DematandTrading_Details(
     "Sujan Khatri",
     "9852102123",
     "9852123025",
-    "Janakpur",
-    "1305245785210225"
+    "Pokhara"
   );
   await navbutton.Next();
   await page.pause();
 });
-

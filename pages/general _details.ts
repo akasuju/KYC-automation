@@ -13,12 +13,12 @@ export class Generalinfo {
     Demat_num: string
   ) {
     await this.page.goto(this.GeneralURL);
-    const TradingOnly_Radio = this.page.getByRole("radio", {
-      name: "Trading Account",
-      exact: true,
-    });
-    await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
-    await TradingOnly_Radio.check();
+    // const TradingOnly_Radio = this.page.getByRole("radio", {
+    //   name: "Trading Account",
+    //   exact: true,
+    // });
+    // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+    // await TradingOnly_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
     const PrimaryNumber = this.page.getByRole("textbox", {
@@ -66,12 +66,11 @@ export class Generalinfo {
     await DematNumber.fill(Demat_num);
   }
 
-   async DematandTrading_Details(
+  async DematandTrading_Details(
     fullname: string,
     primaryphone: string,
     alternativephnum: string,
-    branch_name: string,
-    Demat_num: string
+    branch_name: string
   ) {
     await this.page.goto(this.GeneralURL);
     const TradingOnly_Radio = this.page.getByRole("radio", {
@@ -113,17 +112,30 @@ export class Generalinfo {
       }
     }
 
-    const filePathcitifront = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
-const filePathcitiback = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
-    await this.page.setInputFiles('input[type="file"]', filePathcitifront);
-    await this.page.waitForTimeout(500); 
+    const filePathcitifront = "C:\\Users\\admin\\Downloads\\image.jpg";
+    const filePathcitiback = "C:\\Users\\admin\\Downloads\\image2.jpg";
+    // await this.page.setInputFiles('input[type="file"]', filePathcitifront);
+    // await this.page.waitForTimeout(500);
 
-    await this.page.setInputFiles('input[type="file"]', filePathcitiback);
+    // await this.page.setInputFiles('input[type="file"]', filePathcitiback);
+    // await this.page.waitForTimeout(500);
+    // attach files to the two file inputs (by index)
+    await this.page
+      .locator('input[type="file"]')
+      .nth(0)
+      .setInputFiles(filePathcitifront);
     await this.page.waitForTimeout(500);
-
+    await this.page
+      .locator('input[type="file"]')
+      .nth(1)
+      .setInputFiles(filePathcitiback);
+    await this.page.waitForTimeout(500);
+    // const citifrontupload = this.page
+    //   .getByText("Select a file or drag and drop hereORBrowse files")
+    //   .first()
+    //   .click();
     // const DematNumber = this.page.getByRole("textbox", {
     //   name: "Demat Number",
     // });
-  
   }
 }
