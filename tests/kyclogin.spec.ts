@@ -8,8 +8,9 @@ import { Generalinfo } from "../pages/general _details";
 test.skip("Login", async ({ page }) => {
   //login
   const Login = new UserLogin(page);
-  await Login.Login("automation@yopmail.com", "Test@123");
-  await page.waitForURL(/.*keycloak.*/);
+  await Login.Login("automate@yopmail.com", "Test@123");
+  //await page.waitForURL(/.*keycloak.*/);
+  //expect(page).toHaveURL("")
 });
 
 // test("Register", async ({ page }) => {
@@ -17,7 +18,6 @@ test.skip("Login", async ({ page }) => {
 //   const Login = new UserLogin(page);
 //   const Register = new UserRegister(page);
 //   await Login.Register;
-//   await page.waitForURL(/.*/);
 //   await Register.Register(
 //     "Test",
 //     "",
@@ -28,8 +28,29 @@ test.skip("Login", async ({ page }) => {
 //   );
 // });
 
-test("General Details", async ({ page }) => {
+test("General Details Trading only", async ({ page }) => {
+  const Login = new UserLogin(page);
+  await Login.Login("automate@yopmail.com", "Test@123");
+  const generaldetails = new Generalinfo(page);
+  await generaldetails.Tradingonly_Details(
+    "Sujan Khatri",
+    "9852102123",
+    "9852123025",
+    "Janakpur",
+    "1305245785210225"
+  );
+});
 
-  const generaldetails =new Generalinfo(page);
-  await generaldetails.Common_Details("Sujan","9852102123","9852123025")
+test.skip("General Details Trading and Demat ", async ({ page }) => {
+  const Login = new UserLogin(page);
+  await Login.Login("automate@yopmail.com", "Test@123");
+  const generaldetails = new Generalinfo(page);
+  await generaldetails.Tradingonly_Details(
+    "Sujan Khatri",
+    "9852102123",
+    "9852123025",
+    "Janakpur",
+    "1305245785210225"
+  );
+  await page.pause();
 });

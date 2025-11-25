@@ -79,7 +79,6 @@ test("test", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
 });
 
-import { test, expect } from "@playwright/test";
 
 test("test", async ({ page }) => {
   await page.goto(

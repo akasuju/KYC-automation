@@ -13,7 +13,7 @@ export class UserRegister {
   ) {
     await this.page.waitForLoadState("domcontentloaded");
     const FirstName = this.page.getByRole("textbox", { name: "firstName" });
-    await FirstName.waitFor({ state: "visible" });
+    //await FirstName.waitFor({ state: "visible" });
     //await FirstName.waitFor({ state: "enabled" });
     await FirstName.click();
     await FirstName.fill(firstname);
