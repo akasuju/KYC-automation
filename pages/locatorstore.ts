@@ -79,7 +79,6 @@ test("test", async ({ page }) => {
   await page.getByRole("button", { name: "Register" }).click();
 });
 
-
 test("test", async ({ page }) => {
   await page.goto(
     "https://dev-keycloak.waterflow.technology/realms/naasa/protocol/openid-connect/auth?client_id=kyc&scope=openid%20profile%20&response_type=code&redirect_uri=https%3A%2F%2Fdev-naasa-client-management.waterflowtechnology.net%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=OTiur391NpHOOl_TTyn7JMxKFjMpIujDqY1hanxxR0c"

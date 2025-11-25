@@ -17,6 +17,7 @@ export class Generalinfo {
       name: "Trading Account",
       exact: true,
     });
+    await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
@@ -43,25 +44,26 @@ export class Generalinfo {
       await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
       await BranchOptionLocator.click();
     } catch (err) {
-      // Fallback: some combobox implementations require typing and pressing Enter
-      // or the option may not appear quickly — type the branch name and confirm.
       try {
         await BranchDropdown.fill(branch_name);
         await BranchDropdown.press("Enter");
       } catch (inner) {
-        // rethrow the original error for visibility if fallback also fails
         throw err;
       }
     }
 
-    const filePath = "C:\Users\admin\\Downloads\hello.jpg";
-    const Dematconfirm_doc = this.page.getByRole("button", {
-      name: "Browse files",
-    });
-    // use Page.setInputFiles(selector, files) when targeting the input by selector
+    const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
+
     await this.page.setInputFiles('input[type="file"]', filePath);
-    //await Dematconfirm_doc.setInputFiles(filePath);
     await this.page.waitForTimeout(500);
+
+    // const DematNumber = this.page.getByRole("textbox", {
+    //   name: "Demat Number",
+    // });
+    const DematNumber = this.page.getByLabel("Demat Number", {
+      exact: true,
+    });
+    await DematNumber.fill(Demat_num);
   }
 
   async TradingandDemat_details(Dematnum: string) {}
