@@ -60,3 +60,4 @@ test.skip("General Details Trading and Demat ", async ({ page }) => {
   await navbutton.Next();
   await page.pause();
 });
+
