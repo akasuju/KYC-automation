@@ -2,7 +2,6 @@ import { Page } from "playwright";
 export class UserLogin {
   private loginURL =
     "https://dev-naasa-client-management.waterflowtechnology.net/login";
-
   constructor(private page: Page) {}
 
   async Login(username: string, password: string) {

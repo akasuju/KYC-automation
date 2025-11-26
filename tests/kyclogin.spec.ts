@@ -6,7 +6,7 @@ import { NavButton } from "../pages/Page_Navigation";
 
 //  Using loginpage POM
 
-test.skip("Login", async ({ page }) => {
+test("Login", async ({ page }) => {
   //login
   const Login = new UserLogin(page);
   await Login.Login("automate@yopmail.com", "Test@123");

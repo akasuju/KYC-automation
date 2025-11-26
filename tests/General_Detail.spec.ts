@@ -20,13 +20,33 @@ test("General Details Trading only", async ({ page }) => {
   await page.pause();
 });
 
+test("General Details Trading only MINOR", async ({ page }) => {
+  const Login = new UserLogin(page);
+  //const navbutton = new NavButton(page);
+  await Login.Login("automate@yopmail.com", "Test@123");
+  const generaldetails = new Generalinfo(page);
+  await generaldetails.TradingonlyMINOR_Details(
+    "Sujan Khatri",
+    "9852102123",
+    "9852123025",
+    "Pokhara",
+    "1305245785210225"
+  );
+
+  await page.getByRole("button", { name: "Next" }).click();
+  await page.pause();
+});
+
 test("Empty General Details", async ({ page }) => {
   const Login = new UserLogin(page);
   //Empty General Details fields
   await Login.Login("automate@yopmail.com", "Test@123");
   const generaldetails = new Generalinfo(page);
-  await generaldetails.Tradingonly_Details("", "", "", "", "");
+  await generaldetails.Tradingonly_Details("", "", "", "", "Pokhara");
   await page.getByRole("button", { name: "Next" }).click();
+  expect(page).toHaveURL(
+    "https://dev-naasa-client-management.waterflowtechnology.net/?step=2"
+  );
   await page.pause();
 });
 
