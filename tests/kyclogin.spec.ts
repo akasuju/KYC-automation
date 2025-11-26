@@ -40,18 +40,38 @@ test("password view eye button", async ({ page }) => {
 
 test("playstore Navigation", async ({ page }) => {
   //playstore Navigation
-  const Login = new UserLogin(page);
-  await page.locator('img[alt="Get it on Google Play"]').click();
-  expect(page).toHaveURL(
+  //const Login = new UserLogin(page);
+  await page.goto(
+    "https://dev-naasa-client-management.waterflowtechnology.net/login"
+  );
+  //add settimeout
+  await page.waitForTimeout(2000);
+  //await page.getByRole("link", { name: "Get it on Google Play" }).click();
+  const [popup] = await Promise.all([
+    page.waitForEvent("popup"),
+    page.locator('img[alt="Get it on Google Play"]').click(),
+  ]);
+  await popup.waitForLoadState("domcontentloaded");
+  // perform assertions on the new tab
+  await expect(popup).toHaveURL(
     "https://play.google.com/store/apps/details?id=com.nepse.nepal"
   );
 });
 
 test("Appstore Navigation", async ({ page }) => {
   //password view eye button
-  const Login = new UserLogin(page);
-  await page.locator('img[alt="Download on the App Store"]').click({ timeout: 60000 });
-  expect(page).toHaveURL("https://apps.apple.com/us/app/naasa-x/id6737237945");
+  //const Login = new UserLogin(page);
+  await page.goto(
+    "https://dev-naasa-client-management.waterflowtechnology.net/login"
+  );
+  // await page.getByRole("link", { name: "Download on the App Store" }).click();
+  const [popup] = await Promise.all([
+    page.waitForEvent("popup"),
+    page.locator('img[alt="Download on the App Store"]').click(),
+  ]);
+  await popup.waitForLoadState("domcontentloaded");
+  // perform assertions on the new tab
+  await expect(popup).toHaveURL("https://apps.apple.com/us/app/naasa-x/id6737237945");
 });
 
 // test("Register", async ({ page }) => {
@@ -68,5 +88,3 @@ test("Appstore Navigation", async ({ page }) => {
 //   "Test@123"
 // );
 // });
-
-

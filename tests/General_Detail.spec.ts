@@ -30,17 +30,31 @@ test("Empty General Details", async ({ page }) => {
   await page.pause();
 });
 
-test.skip("General Details Trading and Demat ", async ({ page }) => {
+test("General Details Trading and Demat adult ", async ({ page }) => {
   const Login = new UserLogin(page);
   await Login.Login("automate@yopmail.com", "Test@123");
   const generaldetails = new Generalinfo(page);
-  const navbutton = new NavButton(page);
-  await generaldetails.DematandTrading_Details(
+  //const navbutton = new NavButton(page);
+  await generaldetails.DematandTradingADULT_Details(
     "Sujan Khatri",
     "9852102123",
     "9852123025",
     "Pokhara"
   );
-  await navbutton.Next();
+  await page.getByRole("button", { name: "Next" }).click();
+  await page.pause();
+});
+test("General Details Trading and Demat minor ", async ({ page }) => {
+  const Login = new UserLogin(page);
+  await Login.Login("automate@yopmail.com", "Test@123");
+  const generaldetails = new Generalinfo(page);
+  //const navbutton = new NavButton(page);
+  await generaldetails.DematandTradingMINOR_Details(
+    "Sujan Khatri",
+    "9852102123",
+    "9852123025",
+    "Pokhara"
+  );
+  await page.getByRole("button", { name: "Next" }).click();
   await page.pause();
 });
