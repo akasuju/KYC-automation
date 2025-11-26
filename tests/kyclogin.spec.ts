@@ -71,20 +71,7 @@ test("Appstore Navigation", async ({ page }) => {
   ]);
   await popup.waitForLoadState("domcontentloaded");
   // perform assertions on the new tab
-  await expect(popup).toHaveURL("https://apps.apple.com/us/app/naasa-x/id6737237945");
+  await expect(popup).toHaveURL(
+    "https://apps.apple.com/us/app/naasa-x/id6737237945"
+  );
 });
-
-// test("Register", async ({ page }) => {
-//   //Register
-//   const Login = new UserLogin(page);
-//   const Register = new UserRegister(page);
-//   await Login.Register;
-// await Register.Register(
-//   "Test",
-//   "",
-//   "Automate",
-//   "testautomate@yopmail.com",
-//   "Test@123",
-//   "Test@123"
-// );
-// });
