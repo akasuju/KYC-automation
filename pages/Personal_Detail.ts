@@ -3,11 +3,12 @@ import { UserLogin } from "../pages/loginpage";
 import { UserRegister } from "../pages/Register";
 import { Generalinfo } from "../pages/general _details";
 import { NavButton } from "../pages/Page_Navigation";
-import 
+
 
 export class PersonalDetails {
   // use url from env file
-  
+  private PersonalURL = process.env.PersonalURL!;
+
   constructor(private page: Page) {}
 
   async Personal_Details(

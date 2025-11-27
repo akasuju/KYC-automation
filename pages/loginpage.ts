@@ -1,8 +1,16 @@
 import { Page } from "playwright";
+import "dotenv/config";
 export class UserLogin {
-  private loginURL =
-    "https://dev-naasa-client-management.waterflowtechnology.net/login";
-  constructor(private page: Page) {}
+  private loginURL = process.env.LoginURL!;
+
+  constructor(private page: Page) {
+    // console.log("Login URL:", this.loginURL);
+    if (!this.loginURL) {
+      throw new Error(
+        "Environment variable LoginURL is not set. Set process.env.LoginURL to the login page URL."
+      );
+    }
+  }
 
   async Login(username: string, password: string) {
     await this.page.goto(this.loginURL);

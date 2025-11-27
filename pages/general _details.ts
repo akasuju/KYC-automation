@@ -1,8 +1,7 @@
 import { Locator, Page } from "playwright";
 import { DotenvConfigOptions } from "dotenv";
 export class Generalinfo {
-  private GeneralURL =
-    "https://dev-naasa-client-management.waterflowtechnology.net/?step=1";
+  private GeneralURL = process.env.GeneralURL!;
 
   constructor(private page: Page) {}
   async Tradingonly_Details(
