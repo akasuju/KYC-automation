@@ -104,40 +104,51 @@ test("test", async ({ page }) => {
 });
 
 test("test", async ({ page }) => {
-/// personal details tests below
- await page.getByRole('textbox', { name: 'Email' }).fill('a');
-    await page.getByRole('textbox', { name: 'Email' }).click();
-    await page.getByRole('textbox', { name: 'Email' }).fill('automate@yopmail.com');
-    await page.getByRole('textbox', { name: 'Enter Your Password' }).click();
-    await page.getByRole('textbox', { name: 'Enter Your Password' }).fill('Test@123');
-    await page.getByRole('button', { name: 'Sign In' }).click();
-    await page.getByRole('button', { name: 'Personal Details' }).click();
-    await page.getByRole('textbox', { name: 'Date of Birth (AD)' }).click();
-    await page.getByRole('button', { name: 'Choose date, selected date is' }).click();
-    await page.getByRole('textbox').nth(1).click();
-    await page.getByRole('radio', { name: 'Male', exact: true }).check();
-    await page.getByRole('radio', { name: 'Female' }).check();
-    await page.getByRole('radio', { name: 'Others' }).check();
-    await page.getByRole('radio', { name: 'Male', exact: true }).check();
-    await page.getByRole('radio', { name: 'Married' }).check();
-    await page.getByRole('radio', { name: 'Single' }).check();
-    await page.getByRole('radio', { name: 'Divorced / Widower' }).check();
-    await page.getByRole('textbox', { name: 'Citizenship No.' }).click();
-    await page.getByRole('textbox', { name: 'Citizenship No.' }).fill('dffefef');
-    await page.getByRole('combobox', { name: 'Citizenship Issued From' }).click();
-    await page.getByText('Banke').click();
-    await page.getByText('Citizenship Issued Date (BS)').click();
-    await page.getByRole('textbox').nth(3).click();
-    await page.getByRole('cell', { name: '१०' }).click();
-    await page.getByRole('textbox', { name: 'Pan No. (optional)' }).click();
-    await page.getByRole('textbox', { name: 'Pan No. (optional)' }).fill('fdfdf');
-    await page.getByRole('textbox', { name: 'NID (optional)' }).click();
-    await page.getByRole('textbox', { name: 'NID (optional)' }).fill('fdfdf');
-    await page.getByRole('textbox', { name: 'Passport No. (optional)' }).click();
-    await page.getByRole('textbox', { name: 'Passport No. (optional)' }).fill('dfdfdf');
-    await page.getByRole('combobox', { name: 'Passport Issued From' }).click();
-    await page.locator('[id="menu-passportInfo.issuedDistrict"]').getByText('Banke').click();
-    await page.getByRole('button', { name: 'Choose date' }).nth(1).click();
-    await page.getByRole('gridcell', { name: '6', exact: true }).click();
-    await page.getByRole('button', { name: 'Next' }).click();
+  /// personal details tests below
+  await page.getByRole("textbox", { name: "Email" }).fill("a");
+  await page.getByRole("textbox", { name: "Email" }).click();
+  await page
+    .getByRole("textbox", { name: "Email" })
+    .fill("automate@yopmail.com");
+  await page.getByRole("textbox", { name: "Enter Your Password" }).click();
+  await page
+    .getByRole("textbox", { name: "Enter Your Password" })
+    .fill("Test@123");
+  await page.getByRole("button", { name: "Sign In" }).click();
+  await page.getByRole("button", { name: "Personal Details" }).click();
+  await page.getByRole("textbox", { name: "Date of Birth (AD)" }).click();
+  await page
+    .getByRole("button", { name: "Choose date, selected date is" })
+    .click();
+  await page.getByRole("textbox").nth(1).click();
+  await page.getByRole("radio", { name: "Male", exact: true }).check();
+  await page.getByRole("radio", { name: "Female" }).check();
+  await page.getByRole("radio", { name: "Others" }).check();
+  await page.getByRole("radio", { name: "Male", exact: true }).check();
+  await page.getByRole("radio", { name: "Married" }).check();
+  await page.getByRole("radio", { name: "Single" }).check();
+  await page.getByRole("radio", { name: "Divorced / Widower" }).check();
+  await page.getByRole("textbox", { name: "Citizenship No." }).click();
+  await page.getByRole("textbox", { name: "Citizenship No." }).fill("dffefef");
+  await page.getByRole("combobox", { name: "Citizenship Issued From" }).click();
+  await page.getByText("Banke").click();
+  await page.getByText("Citizenship Issued Date (BS)").click();
+  await page.getByRole("textbox").nth(3).click();
+  await page.getByRole("cell", { name: "१०" }).click();
+  await page.getByRole("textbox", { name: "Pan No. (optional)" }).click();
+  await page.getByRole("textbox", { name: "Pan No. (optional)" }).fill("fdfdf");
+  await page.getByRole("textbox", { name: "NID (optional)" }).click();
+  await page.getByRole("textbox", { name: "NID (optional)" }).fill("fdfdf");
+  await page.getByRole("textbox", { name: "Passport No. (optional)" }).click();
+  await page
+    .getByRole("textbox", { name: "Passport No. (optional)" })
+    .fill("dfdfdf");
+  await page.getByRole("combobox", { name: "Passport Issued From" }).click();
+  await page
+    .locator('[id="menu-passportInfo.issuedDistrict"]')
+    .getByText("Banke")
+    .click();
+  await page.getByRole("button", { name: "Choose date" }).nth(1).click();
+  await page.getByRole("gridcell", { name: "6", exact: true }).click();
+  await page.getByRole("button", { name: "Next" }).click();
 });

@@ -3,6 +3,7 @@ import { UserLogin } from "../pages/loginpage";
 import { UserRegister } from "../pages/Register";
 import { Generalinfo } from "../pages/general _details";
 import { NavButton } from "../pages/Page_Navigation";
+import { DotenvConfigOptions } from "dotenv";
 
 //  Using loginpage POM
 
@@ -10,7 +11,7 @@ test("Login", async ({ page }) => {
   //login
   const Login = new UserLogin(page);
   await Login.Login("automate@yopmail.com", "Test@123");
-  //await page.waitForURL(/.*keycloak.*/);
+  await page.waitForURL(/.*keycloak.*/);
   //expect(page).toHaveURL("")
 });
 

@@ -1,5 +1,5 @@
 import { Locator, Page } from "playwright";
-
+import { DotenvConfigOptions } from "dotenv";
 export class Generalinfo {
   private GeneralURL =
     "https://dev-naasa-client-management.waterflowtechnology.net/?step=1";
@@ -244,7 +244,7 @@ export class Generalinfo {
     });
     await BranchDropdown.click();
     await this.page.waitForTimeout(500);
-    // select the branch by waiting for the option at page level and clicking it
+  
     try {
       const BranchOptionLocator = this.page.getByRole("option", {
         name: branch_name,
