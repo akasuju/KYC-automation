@@ -1,5 +1,5 @@
 import { Locator, Page } from "playwright";
-import { DotenvConfigOptions } from "dotenv";
+import "dotenv/config";
 export class Generalinfo {
   private GeneralURL = process.env.GeneralURL!;
 
