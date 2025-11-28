@@ -16,7 +16,7 @@ export class Generalinfo {
       name: "Trading Account",
       exact: true,
     });
-    //await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+    // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
@@ -34,13 +34,13 @@ export class Generalinfo {
       name: "Office Branch",
     });
     await BranchDropdown.click();
-    await this.page.waitForTimeout(500);
+    //  await this.page.waitForTimeout(500);
     // select the branch by waiting for the option at page level and clicking it
     try {
       const BranchOptionLocator = this.page.getByRole("option", {
         name: branch_name,
       });
-      await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
+      //    await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
       await BranchOptionLocator.click();
     } catch (err) {
       try {
@@ -76,7 +76,7 @@ export class Generalinfo {
       name: "Trading Account",
       exact: true,
     });
-   // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+    // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     await this.page
       .locator("div")
@@ -108,7 +108,7 @@ export class Generalinfo {
       const BranchOptionLocator = this.page.getByRole("option", {
         name: branch_name,
       });
-      await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
+      // await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
       await BranchOptionLocator.click();
     } catch (err) {
       try {
@@ -122,7 +122,7 @@ export class Generalinfo {
     const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
 
     await this.page.setInputFiles('input[type="file"]', filePath);
-    await this.page.waitForTimeout(500);
+    // await this.page.waitForTimeout(500);
 
     // const DematNumber = this.page.getByRole("textbox", {
     //   name: "Demat Number",
@@ -144,7 +144,7 @@ export class Generalinfo {
       name: "Demat & Trading Account",
       exact: true,
     });
-   // await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
+    //  await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
@@ -168,7 +168,7 @@ export class Generalinfo {
       const BranchOptionLocator = this.page.getByRole("option", {
         name: branch_name,
       });
-      await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
+      // await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
       await BranchOptionLocator.click();
     } catch (err) {
       try {
@@ -216,7 +216,7 @@ export class Generalinfo {
       name: "Demat & Trading Account",
       exact: true,
     });
-   // await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
+    //   await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
     await this.page
       .locator("div")
