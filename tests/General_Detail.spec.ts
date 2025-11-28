@@ -32,11 +32,11 @@ test("General Details Trading only MINOR", async ({ page }) => {
     "Pokhara",
     "1305245785210225"
   );
+  
 
   await page.getByRole("button", { name: "Next" }).click();
   await page.pause();
 });
-
 test("Empty General Details", async ({ page }) => {
   const Login = new UserLogin(page);
   //Empty General Details fields
@@ -44,11 +44,8 @@ test("Empty General Details", async ({ page }) => {
   const generaldetails = new Generalinfo(page);
   await generaldetails.Tradingonly_Details("", "", "", "", "Pokhara");
   await page.getByRole("button", { name: "Next" }).click();
-  expect(page).toHaveURL(
-    "https://dev-naasa-client-management.waterflowtechnology.net/?step=2"
-  );
-  await page.pause();
-});
+  expect(page).toHaveURL(process.env.ExpectedURL_GeneralDetails!);
+  await page.pause();});
 
 test("General Details Trading and Demat adult ", async ({ page }) => {
   const Login = new UserLogin(page);

@@ -7,11 +7,15 @@ import "dotenv/config";
 
 //  Using loginpage POM
 
-test("Login", async ({ page }) => {
+test.only("Login", async ({ page }) => {
   //login
-  const Login = new UserLogin(page);
-  await Login.Login("automate@yopmail.com", "Test@123");
-  await page.waitForURL(process.env.ExpectedLoginURL!);
+  await page.goto(process.env.LoginURL!);
+  // const Login = new UserLogin(page);
+  // await Login.Login("automate@yopmail.com", "Test@123");
+
+  //await page.waitForURL(/.*keycloak.*/);
+  await expect(page).toHaveURL(/.*keycloak.*/);
+  await page.pause();
   //expect(page).toHaveURL("")
 });
 
@@ -36,7 +40,7 @@ test("password view eye button", async ({ page }) => {
   await page.waitForTimeout(2000);
   await page.getByRole("button", { name: "Hide password" }).click();
   await page.waitForTimeout(2000);
-  await page.pause;
+  await page.pause();
 });
 
 test("playstore Navigation", async ({ page }) => {

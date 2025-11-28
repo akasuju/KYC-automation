@@ -17,7 +17,6 @@ export class UserLogin {
 
     const emailInput = this.page.getByRole("textbox", { name: "Email" });
     await emailInput.waitFor({ state: "visible" });
-
     await emailInput.fill(username);
 
     const passwordInput = this.page.getByRole("textbox", {
@@ -30,7 +29,7 @@ export class UserLogin {
     const signInButton = this.page.getByRole("button", { name: "Sign In" });
     await signInButton.waitFor({ state: "visible" });
     await signInButton.click();
-
+    
     //await this.page.waitForURL(/.*keycloak.*/);
   }
   async Login_fillonly(username: string, password: string) {
