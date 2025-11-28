@@ -17,6 +17,7 @@ test("General Details Trading only", async ({ page }) => {
   );
 
   await page.getByRole("button", { name: "Next" }).click();
+  await expect(page).toHaveURL(process.env.PersonalURL!);
   await page.pause();
 });
 
@@ -32,9 +33,9 @@ test("General Details Trading only MINOR", async ({ page }) => {
     "Pokhara",
     "1305245785210225"
   );
-  
 
   await page.getByRole("button", { name: "Next" }).click();
+  await expect(page).toHaveURL(process.env.PersonalURL!);
   await page.pause();
 });
 test("Empty General Details", async ({ page }) => {
@@ -44,12 +45,13 @@ test("Empty General Details", async ({ page }) => {
   const generaldetails = new Generalinfo(page);
   await generaldetails.Tradingonly_Details("", "", "", "", "Pokhara");
   await page.getByRole("button", { name: "Next" }).click();
-  expect(page).toHaveURL(process.env.ExpectedURL_GeneralDetails!);
-  await page.pause();});
+  await expect(page).toHaveURL(process.env.ExpectedURL_GeneralDetails!);
+  await page.pause();
+});
 
 test("General Details Trading and Demat adult ", async ({ page }) => {
-  const Login = new UserLogin(page);
-  await Login.Login("automate@yopmail.com", "Test@123");
+  //const Login = new UserLogin(page);
+  //await Login.Login("automate@yopmail.com", "Test@123");
   const generaldetails = new Generalinfo(page);
   //const navbutton = new NavButton(page);
   await generaldetails.DematandTradingADULT_Details(

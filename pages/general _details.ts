@@ -16,7 +16,7 @@ export class Generalinfo {
       name: "Trading Account",
       exact: true,
     });
-    await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+    //await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
@@ -76,7 +76,7 @@ export class Generalinfo {
       name: "Trading Account",
       exact: true,
     });
-    await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+   // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     await this.page
       .locator("div")
@@ -144,7 +144,7 @@ export class Generalinfo {
       name: "Demat & Trading Account",
       exact: true,
     });
-    await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
+   // await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
     const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     await FullName.fill(fullname);
@@ -216,7 +216,7 @@ export class Generalinfo {
       name: "Demat & Trading Account",
       exact: true,
     });
-    await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
+   // await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
     await this.page
       .locator("div")
@@ -243,7 +243,7 @@ export class Generalinfo {
     });
     await BranchDropdown.click();
     await this.page.waitForTimeout(500);
-  
+
     try {
       const BranchOptionLocator = this.page.getByRole("option", {
         name: branch_name,

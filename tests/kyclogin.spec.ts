@@ -14,7 +14,7 @@ test.only("Login", async ({ page }) => {
   // await Login.Login("automate@yopmail.com", "Test@123");
 
   //await page.waitForURL(/.*keycloak.*/);
-  await expect(page).toHaveURL(process.env.ExpectedURL_AfterLogin!);
+  await expect(page).toHaveURL(process.env.ExpectedLoginURL!);
 
   //await expect(page).toHaveURL(/.*keycloak.*/);
   await page.pause();
