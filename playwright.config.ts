@@ -8,10 +8,11 @@ import { defineConfig, devices } from "@playwright/test";
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-/**
+/** 
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  
   //globalSetup: "./global-setup",
   testDir: "./tests",
   /* Run tests in files in parallel */
@@ -48,7 +49,6 @@ export default defineConfig({
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'] },
     // },
-
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'] },
@@ -60,6 +60,7 @@ export default defineConfig({
     //   use: { ...devices['Pixel 5'] },
     // },
     // {
+    // 
     //   name: 'Mobile Safari',
     //   use: { ...devices['iPhone 12'] },
     // },

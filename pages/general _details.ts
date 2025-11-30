@@ -1,6 +1,6 @@
 import { Locator, Page } from "playwright";
 import "dotenv/config";
-export class Generalinfo {
+export class GeneralInfo {
   private GeneralURL = process.env.GeneralURL!;
 
   constructor(private page: Page) {}
@@ -34,22 +34,23 @@ export class Generalinfo {
       name: "Office Branch",
     });
     await BranchDropdown.click();
+
     //  await this.page.waitForTimeout(500);
     // select the branch by waiting for the option at page level and clicking it
-    try {
-      const BranchOptionLocator = this.page.getByRole("option", {
-        name: branch_name,
-      });
-      //    await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
-      await BranchOptionLocator.click();
-    } catch (err) {
-      try {
-        await BranchDropdown.fill(branch_name);
-        await BranchDropdown.press("Enter");
-      } catch (inner) {
-        throw err;
-      }
-    }
+    // try {
+    //   const BranchOptionLocator = this.page.getByRole("option", {
+    //     name: branch_name,
+    //   });
+    //   //    await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
+    //   await BranchOptionLocator.click();
+    // } catch (err) {
+    //   try {
+    //     await BranchDropdown.fill(branch_name);
+    //     await BranchDropdown.press("Enter");
+    //   } catch (inner) {
+    //     throw err;
+    //  }
+    // }
 
     const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
 
