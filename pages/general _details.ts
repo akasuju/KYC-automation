@@ -5,7 +5,7 @@ export class GeneralInfo {
 
   constructor(private page: Page) {}
   async Tradingonly_Details(
-    fullname: string,
+    // fullname: string,
     primaryphone: string,
     alternativephnum: string,
     branch_name: string,
@@ -18,8 +18,8 @@ export class GeneralInfo {
     });
     // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
-    const FullName = this.page.getByRole("textbox", { name: "Full Name" });
-    await FullName.fill(fullname);
+    // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
+    // await FullName.fill(fullname);
     const PrimaryNumber = this.page.getByRole("textbox", {
       name: "Phone Number",
     });
@@ -66,7 +66,6 @@ export class GeneralInfo {
     await DematNumber.fill(Demat_num);
   }
   async TradingonlyMINOR_Details(
-    fullname: string,
     primaryphone: string,
     alternativephnum: string,
     branch_name: string,
@@ -87,8 +86,8 @@ export class GeneralInfo {
       .nth(1)
       .click();
 
-    const FullName = this.page.getByRole("textbox", { name: "Full Name" });
-    await FullName.fill(fullname);
+    // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
+    // await FullName.fill(fullname);
     const PrimaryNumber = this.page.getByRole("textbox", {
       name: "Phone Number",
     });
@@ -123,7 +122,7 @@ export class GeneralInfo {
     const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
 
     await this.page.setInputFiles('input[type="file"]', filePath);
-    // await this.page.waitForTimeout(500);
+    await this.page.waitForTimeout(500);
 
     // const DematNumber = this.page.getByRole("textbox", {
     //   name: "Demat Number",
@@ -132,10 +131,11 @@ export class GeneralInfo {
       exact: true,
     });
     await DematNumber.fill(Demat_num);
+
+    await this.page.getByRole("button", { name: "Next" }).click();
   }
 
   async DematandTradingADULT_Details(
-    fullname: string,
     primaryphone: string,
     alternativephnum: string,
     branch_name: string
@@ -147,8 +147,29 @@ export class GeneralInfo {
     });
     //  await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
-    const FullName = this.page.getByRole("textbox", { name: "Full Name" });
-    await FullName.fill(fullname);
+    // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
+    // await FullName.fill(fullname);
+    const filePathcitifront = "C:\\Users\\admin\\Downloads\\image3.jpg";
+    const filePathcitiback = "C:\\Users\\admin\\Downloads\\image4.jpg";
+    await this.page
+      .locator('input[type="file"]')
+      .nth(0)
+      .setInputFiles(filePathcitifront);
+    await this.page.waitForTimeout(11000);
+    //when first image is uploaded then OCR popup appears anh have to press proceed anyway
+
+    const OCR = await this.page.getByRole("button", { name: "Proceed Anyway" });
+    await OCR.click();
+    // after clicking proceed anyway wait for some time to upload second image
+    //await this.page.waitForSelector(".ocr-popup-class", { state: "detached" });
+    // adter clicking proceed it stucks in await this.page line
+    await this.page.waitForLoadState("networkidle");
+    await this.page
+      .locator('input[type="file"]')
+      .nth(1)
+      .setInputFiles(filePathcitiback);
+
+    await this.page.waitForTimeout(11000);
     const PrimaryNumber = this.page.getByRole("textbox", {
       name: "Phone Number",
     });
@@ -162,8 +183,9 @@ export class GeneralInfo {
     const BranchDropdown = this.page.getByRole("combobox", {
       name: "Office Branch",
     });
+
     await BranchDropdown.click();
-    await this.page.waitForTimeout(500);
+    await this.page.waitForTimeout(1000);
     // select the branch by waiting for the option at page level and clicking it
     try {
       const BranchOptionLocator = this.page.getByRole("option", {
@@ -180,24 +202,15 @@ export class GeneralInfo {
       }
     }
 
-    const filePathcitifront = "C:\\Users\\admin\\Downloads\\image3.jpg";
-    const filePathcitiback = "C:\\Users\\admin\\Downloads\\image4.jpg";
     // await this.page.setInputFiles('input[type="file"]', filePathcitifront);
     // await this.page.waitForTimeout(500);
 
     // await this.page.setInputFiles('input[type="file"]', filePathcitiback);
     // await this.page.waitForTimeout(500);
     // attach files to the two file inputs (by index)
-    await this.page
-      .locator('input[type="file"]')
-      .nth(0)
-      .setInputFiles(filePathcitifront);
+
     await this.page.waitForTimeout(1000);
-    await this.page
-      .locator('input[type="file"]')
-      .nth(1)
-      .setInputFiles(filePathcitiback);
-    await this.page.waitForTimeout(1000);
+    await this.page.getByRole("button", { name: "Next" }).click();
     // const citifrontupload = this.page
     //   .getByText("Select a file or drag and drop hereORBrowse files")
     //   .first()
@@ -207,7 +220,6 @@ export class GeneralInfo {
     // });
   }
   async DematandTradingMINOR_Details(
-    fullname: string,
     primaryphone: string,
     alternativephnum: string,
     branch_name: string
@@ -219,6 +231,13 @@ export class GeneralInfo {
     });
     //   await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
+    await this.page.waitForTimeout(3000);
+    // await this.page
+    //   .getByRole("radio", {
+    //     name: "Minor (अवयस्क)User below 18 (१८ वर्षमुनिको उमेर)",
+    //   })
+    //   .check();
+
     await this.page
       .locator("div")
       .filter({
@@ -226,9 +245,10 @@ export class GeneralInfo {
       })
       .nth(1)
       .click();
+    await this.page.waitForTimeout(2000);
 
-    const FullName = this.page.getByRole("textbox", { name: "Full Name" });
-    await FullName.fill(fullname);
+    // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
+    // await FullName.fill(fullname);
     const PrimaryNumber = this.page.getByRole("textbox", {
       name: "Phone Number",
     });
@@ -259,7 +279,8 @@ export class GeneralInfo {
         throw err;
       }
     }
-    const birthcertificate = "C:\\Users\\admin\\Downloads\\image2.jpg";
+    const birthcertificate =
+      "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
     // await this.page.setInputFiles('input[type="file"]', filePathcitifront);
     // await this.page.waitForTimeout(500);
 
@@ -270,6 +291,7 @@ export class GeneralInfo {
       .locator('input[type="file"]')
       .nth(0)
       .setInputFiles(birthcertificate);
-    await this.page.waitForTimeout(500);
+    await this.page.waitForTimeout(12000);
+    await this.page.getByRole("button", { name: "Next" }).click();
   }
 }
