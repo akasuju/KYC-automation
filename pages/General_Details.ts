@@ -33,24 +33,25 @@ export class GeneralInfo {
     const BranchDropdown = this.page.getByRole("combobox", {
       name: "Office Branch",
     });
+    // await BranchDropdown.click();
     await BranchDropdown.click();
 
-    //  await this.page.waitForTimeout(500);
-    // select the branch by waiting for the option at page level and clicking it
-    // try {
-    //   const BranchOptionLocator = this.page.getByRole("option", {
-    //     name: branch_name,
-    //   });
-    //   //    await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
-    //   await BranchOptionLocator.click();
-    // } catch (err) {
-    //   try {
-    //     await BranchDropdown.fill(branch_name);
-    //     await BranchDropdown.press("Enter");
-    //   } catch (inner) {
-    //     throw err;
-    //  }
-    // }
+    await this.page.waitForTimeout(500);
+    //select the branch by waiting for the option at page level and clicking it
+    try {
+      const BranchOptionLocator = this.page.getByRole("option", {
+        name: branch_name,
+      });
+      //    await BranchOptionLocator.waitFor({ state: "visible", timeout: 5000 });
+      await BranchOptionLocator.click();
+    } catch (err) {
+      try {
+        await BranchDropdown.fill(branch_name);
+        await BranchDropdown.press("Enter");
+      } catch (inner) {
+        throw err;
+      }
+    }
 
     const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
 
@@ -160,10 +161,7 @@ export class GeneralInfo {
 
     const OCR = await this.page.getByRole("button", { name: "Proceed Anyway" });
     await OCR.click();
-    // after clicking proceed anyway wait for some time to upload second image
-    //await this.page.waitForSelector(".ocr-popup-class", { state: "detached" });
-    // adter clicking proceed it stucks in await this.page line
-    await this.page.waitForLoadState("networkidle");
+
     await this.page
       .locator('input[type="file"]')
       .nth(1)
@@ -202,22 +200,8 @@ export class GeneralInfo {
       }
     }
 
-    // await this.page.setInputFiles('input[type="file"]', filePathcitifront);
-    // await this.page.waitForTimeout(500);
-
-    // await this.page.setInputFiles('input[type="file"]', filePathcitiback);
-    // await this.page.waitForTimeout(500);
-    // attach files to the two file inputs (by index)
-
     await this.page.waitForTimeout(1000);
     await this.page.getByRole("button", { name: "Next" }).click();
-    // const citifrontupload = this.page
-    //   .getByText("Select a file or drag and drop hereORBrowse files")
-    //   .first()
-    //   .click();
-    // const DematNumber = this.page.getByRole("textbox", {
-    //   name: "Demat Number",
-    // });
   }
   async DematandTradingMINOR_Details(
     primaryphone: string,
@@ -232,11 +216,6 @@ export class GeneralInfo {
     //   await TradingandDemat_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingandDemat_Radio.check();
     await this.page.waitForTimeout(3000);
-    // await this.page
-    //   .getByRole("radio", {
-    //     name: "Minor (अवयस्क)User below 18 (१८ वर्षमुनिको उमेर)",
-    //   })
-    //   .check();
 
     await this.page
       .locator("div")
@@ -281,12 +260,7 @@ export class GeneralInfo {
     }
     const birthcertificate =
       "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
-    // await this.page.setInputFiles('input[type="file"]', filePathcitifront);
-    // await this.page.waitForTimeout(500);
-
-    // await this.page.setInputFiles('input[type="file"]', filePathcitiback);
-    // await this.page.waitForTimeout(500);
-    // attach files to the two file inputs (by index)
+      
     await this.page
       .locator('input[type="file"]')
       .nth(0)

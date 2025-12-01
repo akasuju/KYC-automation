@@ -1,5 +1,6 @@
 import { Page } from "playwright";
 import "dotenv/config";
+import { GeneralInfo } from "./General_Details";
 export class UserLogin {
   private loginURL = process.env.LoginURL!;
 
@@ -29,7 +30,7 @@ export class UserLogin {
     const signInButton = this.page.getByRole("button", { name: "Sign In" });
     await signInButton.waitFor({ state: "visible" });
     await signInButton.click();
-    
+
     //await this.page.waitForURL(/.*keycloak.*/);
   }
   async Login_fillonly(username: string, password: string) {

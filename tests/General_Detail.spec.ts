@@ -1,6 +1,6 @@
 import { test, expect, Page } from "playwright/test";
 import { UserLogin } from "../pages/loginpage";
-import { GeneralInfo } from "../pages/General _Details";
+import { GeneralInfo } from "../pages/General_Details";
 import "dotenv/config";
 test("General Details Trading Adult", async ({ page }) => {
   //const Login = new UserLogin(page);
