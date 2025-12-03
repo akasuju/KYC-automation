@@ -1,7 +1,7 @@
 import { test, Page, expect, Locator } from "playwright/test";
 import { UserLogin } from "../pages/loginpage";
 import { UserRegister } from "../pages/Register";
-import { GeneralInfo } from "../pages/General _Details";
+import { GeneralInfo } from "../pages/General_Details";
 import { NavButton } from "../pages/Page_Navigation";
 import "dotenv/config";
 

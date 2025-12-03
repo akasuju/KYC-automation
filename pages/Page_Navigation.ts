@@ -1,5 +1,6 @@
 // Back and Next Button
 import { Locator, Page } from "playwright";
+import { GeneralInfo } from "./General_Details";
 
 export class NavButton {
   constructor(private page: Page) {}
