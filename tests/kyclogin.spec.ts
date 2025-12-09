@@ -23,8 +23,8 @@ test.only("Login", async ({ page }) => {
 
 test("Invalid Login", async ({ page }) => {
   //invalid credentials
-  //const Login = new UserLogin(page);
-  // await Login.Login("automation@yopmail.com", "wrongpassword");
+  const Login = new UserLogin(page);
+  await Login.Login("automation@yopmail.com", "wrongpassword");
   await expect(page.getByText("Invalid username or password.")).toBeVisible();
 });
 test("Empty Password Login", async ({ page }) => {
@@ -48,9 +48,7 @@ test("password view eye button", async ({ page }) => {
 test("playstore Navigation", async ({ page }) => {
   //playstore Navigation
   //const Login = new UserLogin(page);
-  await page.goto(
-    "https://dev-naasa-client-management.waterflowtechnology.net/login"
-  );
+  await page.goto(process.env.LoginURL!);
   //add settimeout
   await page.waitForTimeout(2000);
   //await page.getByRole("link", { name: "Get it on Google Play" }).click();

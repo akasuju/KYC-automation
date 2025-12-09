@@ -84,7 +84,6 @@ export class GeneralInfo {
       .filter({
         hasText: /^Minor \(अवयस्क\)User below 18 \(१८ वर्षमुनिको उमेर\)$/,
       })
-      .nth(1)
       .click();
 
     // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
@@ -260,7 +259,7 @@ export class GeneralInfo {
     }
     const birthcertificate =
       "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
-      
+
     await this.page
       .locator('input[type="file"]')
       .nth(0)
