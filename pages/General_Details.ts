@@ -53,7 +53,8 @@ export class GeneralInfo {
       }
     }
 
-    const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
+    const filePath =
+      "Z:\\home\\sujan\\KYC automation\\Git Linux Commands Cheatsheet.pdf";
 
     await this.page.setInputFiles('input[type="file"]', filePath);
     await this.page.waitForTimeout(500);
@@ -119,7 +120,8 @@ export class GeneralInfo {
       }
     }
 
-    const filePath = "C:\\Users\\admin\\Downloads\\Lab 13 - SPM Details_1.pdf";
+    const filePath =
+      "Z:\\home\\sujan\\KYC automation\\Git Linux Commands Cheatsheet.pdf";
 
     await this.page.setInputFiles('input[type="file"]', filePath);
     await this.page.waitForTimeout(500);
