@@ -1,25 +1,26 @@
 pipeline {
-    agent any                      // Will be improved in step 6.5
+    agent {
+        docker {
+            image 'mcr.microsoft.com/playwright:focal-full'   // ← THIS LINE FIXES EVERYTHING
+            args '-u root:root --entrypoint=""'              // fixes permission issues
+        }
+    }
 
     stages {
         stage('Checkout') {
             steps {
-                echo 'Pulling code from Git...'
-                // This line is enough when the job is triggered by GitLab/GitHub webhook
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                echo 'Installing Node.js packages...'
-                sh 'npm ci'                     // clean install = fast & reproducible
+                sh 'npm ci'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                echo 'Starting Playwright tests...'
                 sh 'npx playwright test'
             }
         }
@@ -27,18 +28,14 @@ pipeline {
 
     post {
         always {
-            // Publish nice HTML report inside Jenkins
             publishHTML target: [
                 allowMissing: false,
                 alwaysLinkToLastBuild: true,
                 keepAll: true,
                 reportDir: 'playwright-report',
                 reportFiles: 'index.html',
-                reportName: 'Playwright HTML Report'
+                reportName: 'Playwright Report'
             ]
-
-            // Optional: archive videos/traces on failure
-            archiveArtifacts artifacts: 'test-results/**/*', allowEmptyArchive: true
         }
     }
 }
