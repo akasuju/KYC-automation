@@ -6,14 +6,9 @@ export class UserLogin {
 
   constructor(private page: Page) {
     // console.log("Login URL:", this.loginURL);
-    if (!this.loginURL) {
-      throw new Error(
-        "Environment variable LoginURL is not set. Set process.env.LoginURL to the login page URL."
-      );
-    }
   }
 
-  async Login(username: string, password: string) {
+  async Login(username:string, password: string) {
     await this.page.goto(this.loginURL);
 
     const emailInput = this.page.getByRole("textbox", { name: "Email" });
