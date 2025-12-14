@@ -16,7 +16,7 @@ export class GeneralInfo {
       name: "Trading Account",
       exact: true,
     });
-    // await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
+    await TradingOnly_Radio.waitFor({ state: "visible", timeout: 5000 });
     await TradingOnly_Radio.check();
     // const FullName = this.page.getByRole("textbox", { name: "Full Name" });
     // await FullName.fill(fullname);
@@ -54,7 +54,7 @@ export class GeneralInfo {
     }
 
     const filePath =
-      "Z:\\home\\sujan\\KYC automation\\Git Linux Commands Cheatsheet.pdf";
+      "/home/sujan/KYC automation/docs/Git Linux Commands Cheatsheet.pdf";
 
     await this.page.setInputFiles('input[type="file"]', filePath);
     await this.page.waitForTimeout(500);

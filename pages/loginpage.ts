@@ -8,7 +8,7 @@ export class UserLogin {
     // console.log("Login URL:", this.loginURL);
   }
 
-  async Login(username:string, password: string) {
+  async Login(username: string, password: string) {
     await this.page.goto(this.loginURL);
 
     const emailInput = this.page.getByRole("textbox", { name: "Email" });
