@@ -1,20 +1,23 @@
 import { test, expect } from "@playwright/test";
+import "dotenv/config";
+
+const keycloakBaseUrl =
+  process.env.KEYCLOAK_URL || "https://example.invalid/keycloak";
+const clientManagementBaseUrl =
+  process.env.CLIENT_MANAGEMENT_URL || "https://example.invalid/client-management";
+
+const buildKeycloakAuthUrl = (state: string) =>
+  `${keycloakBaseUrl}/realms/naasa/protocol/openid-connect/auth?client_id=kyc&scope=openid%20profile%20&response_type=code&redirect_uri=${encodeURIComponent(`${clientManagementBaseUrl}/api/auth/callback/keycloak`)}&state=${state}`;
 
 test("test", async ({ page }) => {
-  await page.goto(
-    "https://dev-keycloak.waterflow.technology/realms/naasa/protocol/openid-connect/auth?client_id=kyc&scope=openid%20profile%20&response_type=code&redirect_uri=https%3A%2F%2Fdev-naasa-client-management.waterflowtechnology.net%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=VYa29lh2fiOOZDMPNWm4HFk1kswdvFwipcMsPGT2sGs"
-  );
+  await page.goto(buildKeycloakAuthUrl("VYa29lh2fiOOZDMPNWm4HFk1kswdvFwipcMsPGT2sGs"));
 
   await page.getByRole("radio", { name: "Demat & Trading Account" }).check();
-  await page.goto(
-    "https://dev-naasa-client-management.waterflowtechnology.net/"
-  );
+  await page.goto(clientManagementBaseUrl);
   await page
     .getByRole("radio", { name: "Trading Account", exact: true })
     .check();
-  await page.goto(
-    "https://dev-naasa-client-management.waterflowtechnology.net/"
-  );
+  await page.goto(clientManagementBaseUrl);
   await page
     .locator("div")
     .filter({
@@ -56,9 +59,7 @@ test("test", async ({ page }) => {
 });
 
 test("test", async ({ page }) => {
-  await page.goto(
-    "https://dev-keycloak.waterflow.technology/realms/naasa/protocol/openid-connect/auth?client_id=kyc&scope=openid%20profile%20&response_type=code&redirect_uri=https%3A%2F%2Fdev-naasa-client-management.waterflowtechnology.net%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=0LJglKw4g_CoGqGInjJ3QUcsVVnceKdlrrDTLPCQVHo"
-  );
+  await page.goto(buildKeycloakAuthUrl("0LJglKw4g_CoGqGInjJ3QUcsVVnceKdlrrDTLPCQVHo"));
   await page.getByRole("link", { name: "Register" }).click();
   await await page.getByRole("textbox", { name: "First name" }).fill("sujan");
   await page.getByRole("textbox", { name: "Middle Name" }).click();
@@ -80,9 +81,7 @@ test("test", async ({ page }) => {
 });
 
 test("test", async ({ page }) => {
-  await page.goto(
-    "https://dev-keycloak.waterflow.technology/realms/naasa/protocol/openid-connect/auth?client_id=kyc&scope=openid%20profile%20&response_type=code&redirect_uri=https%3A%2F%2Fdev-naasa-client-management.waterflowtechnology.net%2Fapi%2Fauth%2Fcallback%2Fkeycloak&state=OTiur391NpHOOl_TTyn7JMxKFjMpIujDqY1hanxxR0c"
-  );
+  await page.goto(buildKeycloakAuthUrl("OTiur391NpHOOl_TTyn7JMxKFjMpIujDqY1hanxxR0c"));
   await page
     .getByRole("textbox", { name: "Email" })
     .fill("automate@yopmail.com");

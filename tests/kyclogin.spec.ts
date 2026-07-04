@@ -5,6 +5,12 @@ import { GeneralInfo } from "../pages/General_Details";
 import { NavButton } from "../pages/Page_Navigation";
 import "dotenv/config";
 
+const loginUrl = process.env.LoginURL || process.env.LOGIN_URL || "https://example.invalid/login";
+const expectedLoginUrl =
+  process.env.ExpectedLoginURL || process.env.EXPECTED_LOGIN_URL || "https://example.invalid/expected-login";
+const playStoreUrl = process.env.PLAY_STORE_URL || "https://example.invalid/play-store";
+const appStoreUrl = process.env.APP_STORE_URL || "https://example.invalid/app-store";
+
 //  Using loginpage POM
 
 test.only("Login", async ({ page }) => {
@@ -14,7 +20,7 @@ test.only("Login", async ({ page }) => {
   // await Login.Login("automate@yopmail.com", "Test@123");
 
   //await page.waitForURL(/.*keycloak.*/);
-  await expect(page).toHaveURL(process.env.ExpectedLoginURL!);
+  await expect(page).toHaveURL(expectedLoginUrl);
 
   //await expect(page).toHaveURL(/.*keycloak.*/);
   await page.pause();
@@ -58,17 +64,13 @@ test("playstore Navigation", async ({ page }) => {
   ]);
   await popup.waitForLoadState("domcontentloaded");
   // perform assertions on the new tab
-  await expect(popup).toHaveURL(
-    "https://play.google.com/store/apps/details?id=com.nepse.nepal"
-  );
+  await expect(popup).toHaveURL(playStoreUrl);
 });
 
 test("Appstore Navigation", async ({ page }) => {
   //password view eye button
   //const Login = new UserLogin(page);
-  await page.goto(
-    "https://dev-naasa-client-management.waterflowtechnology.net/login"
-  );
+  await page.goto(loginUrl);
   // await page.getByRole("link", { name: "Download on the App Store" }).click();
   const [popup] = await Promise.all([
     page.waitForEvent("popup"),
@@ -76,7 +78,5 @@ test("Appstore Navigation", async ({ page }) => {
   ]);
   await popup.waitForLoadState("domcontentloaded");
   // perform assertions on the new tab
-  await expect(popup).toHaveURL(
-    "https://apps.apple.com/us/app/naasa-x/id6737237945"
-  );
+  await expect(popup).toHaveURL(appStoreUrl);
 });
